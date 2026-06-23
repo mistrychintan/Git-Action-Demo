@@ -1,0 +1,26 @@
+name: project2
+on: push
+
+jobs:
+  build: 
+    runs-on: ubuntu-22.04
+    steps:
+      - name: get code
+        uses: actions/checkout@v7
+
+      - name: set up nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version : 22
+
+      - name: install dependencies
+        run: npm install
+
+      - name: run tests
+        run: npm test
+
+      - name: build
+        run: npm run build
+
+      - name: deploy
+        run: echo "deploying server.."
