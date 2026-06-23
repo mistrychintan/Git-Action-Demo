@@ -3,7 +3,7 @@ on: push
 
 jobs:
   build: 
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: get code
         uses: actions/checkout@v7
@@ -13,13 +13,13 @@ jobs:
         with:
           node-version : 24
 
-      - name: install dependencies
+      - name: Install dependencies
         run: npm install
 
-      - name: run tests
+      - name: Run tests
         run: npm test
 
-      - name: build
+      - name: Build
         run: npm run build
 
       - name: deploy
