@@ -1,18 +1,26 @@
-name: First Workflow
+name: project2
 on: push
 
 jobs:
-  job-1:
-    runs-on: ubuntu-24.04
+  build: 
+    runs-on: ubuntu-latest
     steps:
-      - name: print hello all
-        run: echo "hello all"
+      - name: get code
+        uses: actions/checkout@v7
 
-      - name: print cpu infro
-        run: lscpu
+      - name: set up nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-      - name: print mem info
-        run: lsmem
+      - name: Install dependencies
+        run: npm install
 
-      - name: print volume
-        run: lsblk
+      - name: Run tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: deploy
+        run: echo "deploying server.."
